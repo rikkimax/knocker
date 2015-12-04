@@ -2,5 +2,6 @@
 	"name": "knocker",
 	"description": "Knocks on ports to open up another. Compatible with Knockd.",
 	"copyright": "Copyright © 2015, Richard (Rikki) Andrew Cattermole",
-	"authors": ["rikki cattermole"]
+	"authors": ["rikki cattermole"],
+	"license": "MIT"
 }
