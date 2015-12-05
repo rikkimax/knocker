@@ -17,10 +17,18 @@ int main(string[] args) {
 	import core.memory;
 	GC.disable;
 
-	if (args.length < 2) {
-		import std.stdio : writeln;
-		writeln(args[0], " <hostname> <ports...>");
-		return 1;
+	if (args.length < 3) {
+		import std.process : environment;
+		
+		string KNOCK_KNOCK_PORTS = environment.get("KNOCK_KNOCK_PORTS");
+		if (KNOCK_KNOCK_PORTS is null || args.length < 2) {
+			import std.stdio : writeln;
+			writeln(args[0], " <hostname> <ports...>");
+			return 1;
+		} else {
+			import std.string : split;
+			args ~= KNOCK_KNOCK_PORTS.split;
+		}
 	}
 
 	string hostname = args[1];
