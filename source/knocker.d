@@ -19,15 +19,20 @@ int main(string[] args) {
 
 	if (args.length < 3) {
 		import std.process : environment;
+		import std.stdio : writeln;
 		
 		string KNOCK_KNOCK_PORTS = environment.get("KNOCK_KNOCK_PORTS");
 		if (KNOCK_KNOCK_PORTS is null || args.length < 2) {
-			import std.stdio : writeln;
 			writeln(args[0], " <hostname> <ports...>");
 			return 1;
 		} else {
 			import std.string : split;
 			args ~= KNOCK_KNOCK_PORTS.split;
+			
+			if (args.length >= 3)
+				writeln("Found ", args.length - 2, " arguments from KNOCK_KNOCK_PORTS environment variable");
+			else
+				return 2;
 		}
 	}
 
